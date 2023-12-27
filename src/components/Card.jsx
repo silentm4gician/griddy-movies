@@ -12,11 +12,10 @@ const Card = ({ media }) => {
   ? `/media/player/show/${media.id}`
   : `/media/player/movie/${media.id}`;
   
+  const corsURL = 'https://calm-badlands-90155-f3b0b171e660.herokuapp.com/'
   const urlToCheck = media.first_air_date
-  ? `https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
+  ? `${corsURL}https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
   : `https://vidsrc.xyz/embed/movie?tmdb=${media.id}`
-  
-  // const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
   
   useEffect(() =>
   {
