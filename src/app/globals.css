@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: rgb(25, 25, 26);
+}
+
+@layer components {
+  .moviecards {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 40%;
+  }
+
+  .dropdownmenu {
+    animation: dropdown 2s linear 0s forwards normal;
+    transform-origin: top;
+  }
+
+  .redropdownmenu {
+    animation: dropdown 1s linear 0s forwards reverse;
+    transform-origin: top;
+  }
+
+  .cardgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .tvgrid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas:
+      "title title"
+      "image desc";
+  }
+
+  .tvtitle {
+    grid-area: title;
+  }
+  .tvimage {
+    grid-area: image;
+  }
+  .tvdesc {
+    grid-area: desc;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dropdown {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+  .resume {
+    animation-play-state: running;
+  }
+}
+
+.btnFilter:hover
+{
+  background-color: rgba(128, 128, 128, 0.124);
+}
