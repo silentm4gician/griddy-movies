@@ -45,11 +45,17 @@ const HandleSeasons = ({ show }) => {
 
   return (
     <div>
+        <div className="mt-8 mb-8 ml-[22%]">
+          <MediaPlayer url={mediaUrl} />
+        </div>
+        <div className="items-center">
+
       <label className="mx-4">Seasons:</label>
       <select
-        className="text-black tvselect max p-2 text-lg w-[200px] mt-4"
+        className="text-black tvselect max p-2 text-lg w-[100px] mt-4 bg-slate-700 text-white"
         onChange={handleChange}
         defaultValue={1}
+        style={{borderRadius:'8px'}}
       >
         {parseSeasons.map((seasonKey) => (
           <option
@@ -62,13 +68,14 @@ const HandleSeasons = ({ show }) => {
           </option>
         ))}
       </select>
-      <div className="flex gap-5 mt-4">
-        <div className="flex flex-col bg-[#4C3F3C] max-w-[800px] rounded-lg overflow-auto h-[600px]">
-          <div className="py-3 px-5">
+        </div>
+      <div className="flex gap-5 mt-4 ml-[10%]">
+        <div className="flex flex-col bg-slate-800 max-w-[90%] rounded-lg overflow-auto h-[600px] items-center mb-8">
+          <div className="py-3 px-5 ">
             {displayedSeason &&
               displayedSeason.episodes.map((episode) => (
                 <div
-                  className="flex bg-gray-700 my-2 group hover:bg-gray-800 duration-150 hover:cursor-pointer h-[170px]"
+                  className="flex bg-gray-700 p-3 my-2 group hover:bg-gray-800 duration-150 hover:cursor-pointer h-[170px]"
                   onClick={() =>
                     handleEpisodeClick(
                       episode.season_number,
@@ -76,27 +83,27 @@ const HandleSeasons = ({ show }) => {
                     )
                   }
                   key={episode.id}
+                  style={{borderRadius:'8px'}}
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w300${episode.still_path}`}
                     alt="Episode Image"
                     className="group-hover:brightness-[80%] duration-300"
+                    width={'60%'}
+                    style={{maxWidth:'200px', borderRadius:'10%'}}
                   />
 
-                  <div className="p-3">
+                  <div className="p-2">
                     <p className="text-lg font-bold">
                       EP: {episode.episode_number} | {episode.name}
                     </p>
                     <div className="overflow-hidden h-[70px] text-ellipsis mt-2">
-                      <p className="text-md">{episode.overview}</p>
+                      {/* <p className="text-md">{episode.overview}</p> */}
                     </div>
                   </div>
                 </div>
               ))}
           </div>
-        </div>
-        <div>
-          <MediaPlayer url={mediaUrl} />
         </div>
       </div>
     </div>

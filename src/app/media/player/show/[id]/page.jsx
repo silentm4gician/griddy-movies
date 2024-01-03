@@ -11,7 +11,7 @@ const ShowPlayer = async ({ params }) => {
       <h1 className="text-xl font-bold text-center mt-4">{showInfo.name}</h1>
 
       <div className="flex mt-4 flex-col items-center">
-        <p className="text-lg mx-40">{showInfo.overview}</p>
+        <p className="text-lg mx-40 mb-8">{showInfo.overview}</p>
         <HandleSeasons show={showInfo} />
       </div>
     </div>

@@ -9,7 +9,7 @@ const MoviePlayer = async ({ params }) => {
     <div className="text-white h-[100vh]">
       <h1 className="text-xl font-bold text-center mt-4">{movieInfo.title}</h1>
       <div className="flex mt-4 flex-col items-center">
-        <p className="text-lg mx-40">{movieInfo.overview}</p>
+        <p className="text-lg mx-40 mb-8">{movieInfo.overview}</p>
         <MediaPlayer url={movieURL} />
       </div>
     </div>
