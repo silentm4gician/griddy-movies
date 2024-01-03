@@ -4,7 +4,7 @@ const page = () =>
 {
     return (
         <>
-            <h1 className="mt-8 mb-2 text-center text-white">LOS PAPUS DEVELOPERS</h1>
+            <h1 className="mt-8 mb-2 text-center text-white">LOS PAPUS :V DEVELOPERS</h1>
         <section className="flex justify-center text-white p-2">
             <br />
             <div style={{width:'150px'}} className="text-center m-2">
