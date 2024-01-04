@@ -20,12 +20,6 @@ const Navbar = () =>
     }
   }
 
-  const find =(e)=>
-  {
-    e.preventDefault()
-    window.location.href = `/media/results/${search}`
-  }
-
   return (
     <nav className="topnav" id="myTopnav">
       <Link className="active hover:bg-slate-800 p-1 rounded-md mt-1 ml-1" href="/">
@@ -56,7 +50,6 @@ const Navbar = () =>
           About
         </Link>
 
-        <form onSubmit={find} action="">
         <input
           required
           type='text'
@@ -66,13 +59,12 @@ const Navbar = () =>
         ></input>
         <div className="float-left mt-3">  
         <Link
-          className="w-[16px] h-[2.3rem] ml-2 hover:bg-slate-800 p-2 rounded-full cursor-pointer"
+          className="h-[3rem] mr-2 p-2 rounded-full cursor-pointer color-800"
           href={`/media/results/${search}`}
           >
           🔍
         </Link>
           </div>
-        </form>
 
       <a  className="icon hover:bg-slate-800 p-3 rounded-md" onClick={collapse}>&#9776;</a>
     </nav>
