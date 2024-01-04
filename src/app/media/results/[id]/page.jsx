@@ -13,8 +13,8 @@ const ResultsPage = ({params}) =>
     <section className="bg-slate-800">
 
         <div className="flex justify-center">
-            <button onClick={()=>setMedia('movie')} className="p-4 bg-slate-900 text-white mt-16 mx-2 mb-4 mt-4 rounded-md btnFilter">MOVIES</button>
-            <button onClick={()=>setMedia('tv')} className="p-4 bg-slate-900 text-white mt-16 mx-2 mb-4 mt-4 rounded-md btnFilter">TV SHOWS</button>
+            <button onClick={()=>setMedia('movie')} className="p-4 bg-slate-900 text-white mt-20 mx-2 mb-4 mt-4 rounded-md btnFilter">MOVIES</button>
+            <button onClick={()=>setMedia('tv')} className="p-4 bg-slate-900 text-white mt-20 mx-2 mb-4 mt-4 rounded-md btnFilter">TV SHOWS</button>
         </div>
 
         <Results query={params.id} type={media}/>
