@@ -12,13 +12,14 @@ const Card = ({ media }) => {
   ? `/media/player/show/${media.id}`
   : `/media/player/movie/${media.id}`;
   
-  const corsURL = 'https://calm-badlands-90155-f3b0b171e660.herokuapp.com/'
-  const urlToCheck = media.first_air_date
-  ? `${corsURL}https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
-  : `https://vidsrc.xyz/embed/movie?tmdb=${media.id}`
   
   useEffect(() =>
   {
+    const corsURL = 'https://proxy-ibmasyzzya-uc.a.run.app/'
+    const urlToCheck = media.first_air_date
+    ? `${corsURL}https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
+    : `${corsURL}https://vidsrc.xyz/embed/movie?tmdb=${media.id}`
+
     const fetchData = async () => 
     {
       const response = await fetch(urlToCheck);
@@ -26,7 +27,7 @@ const Card = ({ media }) => {
     };
 
     fetchData();
-  }, [urlToCheck]);
+  }, []);
   
 
   return (
