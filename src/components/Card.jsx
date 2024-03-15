@@ -63,7 +63,6 @@ const Card = ({ media }) => {
             </div>
           </a>
         </Link>
-      )
     </>
   );
 };
