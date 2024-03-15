@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const Card = ({ media }) => {
-  const [statusValue, setStatusValue] = useState(null);
+  // const [statusValue, setStatusValue] = useState(null);
   
   const imageUrl = `https://image.tmdb.org/t/p/w300${media.poster_path}`;
   
@@ -13,26 +13,25 @@ const Card = ({ media }) => {
   : `/media/player/movie/${media.id}`;
   
   
-  useEffect(() =>
-  {
-    const corsURL = 'https://proxy-ibmasyzzya-uc.a.run.app/'
-    const urlToCheck = media.first_air_date
-    ? `${corsURL}https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
-    : `${corsURL}https://vidsrc.xyz/embed/movie?tmdb=${media.id}`
+  // useEffect(() =>
+  // {
+  //   const corsURL = 'https://proxy-ibmasyzzya-uc.a.run.app/'
+  //   const urlToCheck = media.first_air_date
+  //   ? `${corsURL}https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
+  //   : `${corsURL}https://vidsrc.xyz/embed/movie?tmdb=${media.id}`
 
-    const fetchData = async () => 
-    {
-      const response = await fetch(urlToCheck);
-      setStatusValue(response.status);
-    };
+  //   const fetchData = async () => 
+  //   {
+  //     const response = await fetch(urlToCheck);
+  //     setStatusValue(response.status);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
   
 
   return (
     <>
-      {statusValue === 200 && (
         <Link legacyBehavior href={linkUrl}>
           <a className="relative moviecards m-0 p-0 group">
             <div className="overflow-hidden rounded-md">
@@ -64,7 +63,7 @@ const Card = ({ media }) => {
             </div>
           </a>
         </Link>
-      )}
+      )
     </>
   );
 };
