@@ -105,12 +105,6 @@ body {
   display: none;
 }
 
-
-.topnav a:hover{
-  background-color: #555;
-  color: white;
-}
-
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child){
     display: none;
@@ -155,4 +149,23 @@ body {
 {
   text-align: center;
   margin-top: 12px;
+}
+
+/* SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(52, 63, 78);
+  border-radius: 10px;
 }

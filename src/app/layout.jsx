@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body className={`${roboto.className} relative`}>
         <main>
           <Navbar />
-          <div className="mt-16 pt-[65px] bg-slate-800">{children}</div>
+          <div className="mt-[20%] sm:mt-10 pt-[65px] bg-slate-800">{children}</div>
           {/* <Footer /> */}
         </main>
       </body>

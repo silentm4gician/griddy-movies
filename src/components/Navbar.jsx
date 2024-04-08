@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Navbar = () =>
 { 
-  const [search,setSearch] = useState('naruto')
+  const [search,setSearch] = useState('')
 
   const collapse =()=>
   {
@@ -59,10 +59,13 @@ const Navbar = () =>
         ></input>
         <div className="float-left mt-3">  
         <Link
-          className="h-[3rem] mr-2 p-2 rounded-full cursor-pointer color-800"
+          className="h-[3rem] rounded-full cursor-pointer color-800 shadow hover:shadow-slate-300"
           href={`/media/results/${search}`}
           >
-          🔍
+          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Z"/>
+          <path fillRule="evenodd" d="M21.707 21.707a1 1 0 0 1-1.414 0l-3.5-3.5a1 1 0 0 1 1.414-1.414l3.5 3.5a1 1 0 0 1 0 1.414Z" clipRule="evenodd"/>
+          </svg>
         </Link>
           </div>
 
