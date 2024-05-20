@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Griddy Movies
 
-First, run the development server:
+web application to watch series and films for free, builded with the [TMDB API](https://developer.themoviedb.org/docs/getting-started)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Subtitles in (almost) every language
+- Fullscreen mode
+- Fully Responsive
+- FREE
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![mainScreen](https://github.com/silentm4gician/griddy-movies/assets/112287756/fd8a7376-fe71-4a3a-9f93-e69209975f14)
+![image](https://github.com/silentm4gician/griddy-movies/assets/112287756/c74873fe-440a-4ccf-aa58-86fbee9cd508)
 
-## Learn More
+## Roadmap
 
-To learn more about Next.js, take a look at the following resources:
+- Add functions to create and administrate Users
+- Add User autentication
+- Add playlists (to watch, watching, plan to watch, etc)
+- Implement comments, likes and dislikes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authors
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [@silentM4gician](https://github.com/silentm4gician)
+- [@Tropicaal_](https://github.com/Luks-code)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
