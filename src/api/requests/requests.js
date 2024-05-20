@@ -8,7 +8,7 @@ export const getTrending = async () => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -25,7 +25,7 @@ export const getTrendingMovies = async () => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -42,7 +42,7 @@ export const getTopRatedTvShows = async () => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -59,7 +59,7 @@ export const getTopRatedMovies = async () => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -76,7 +76,7 @@ export const getMovieInfo = async (movieId) => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -93,7 +93,7 @@ export const getShowInfo = async (showId) => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -110,7 +110,7 @@ export const getSeasonInfo = async (showId, showSeason) => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -123,11 +123,11 @@ export const getMovieResults = async (toSearch) => {
   const options = {
     method: "GET",
     url: 'https://api.themoviedb.org/3/search/movie',
-    params: {query: toSearch, include_adult: 'false', language: 'en-US', page: '1'},
+    params: { query: toSearch, include_adult: 'false', language: 'en-US', page: '1' },
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
@@ -140,11 +140,11 @@ export const getTvResults = async (toSearch) => {
   const options = {
     method: "GET",
     url: 'https://api.themoviedb.org/3/search/tv',
-    params: {query: toSearch, include_adult: 'false', language: 'en-US', page: '1'},
+    params: { query: toSearch, include_adult: 'false', language: 'en-US', page: '1' },
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjQyMGFlYTE1YjYyZDFhZjllYTc0OWQ5NWZhYmFkMyIsInN1YiI6IjY1NzE3ZTU0OTBmY2EzMDE0ZTcxYjFlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DY3qGumteCUGUB_jcJNzt0obDH0jaPHkN5AtcIjHLfw",
+        process.env.NEXT_PUBLIC_API_KEY,
     },
   };
 
