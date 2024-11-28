@@ -1,69 +1,54 @@
 "use client";
 
 import Link from "next/link";
-// import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FaStar, FaPlay } from "react-icons/fa";
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
 
 const Card = ({ media }) => {
-  // const [statusValue, setStatusValue] = useState(null);
-  
-  const imageUrl = `https://image.tmdb.org/t/p/w300${media.poster_path}`;
-  
+  const imageUrl = `https://image.tmdb.org/t/p/w500${media.poster_path}`;
   const linkUrl = media.first_air_date
-  ? `/media/player/show/${media.id}`
-  : `/media/player/movie/${media.id}`;
-  
-  
-  // useEffect(() =>
-  // {
-  //   const corsURL = 'https://proxy-ibmasyzzya-uc.a.run.app/'
-  //   const urlToCheck = media.first_air_date
-  //   ? `${corsURL}https://vidsrc.xyz/embed/tv?tmdb=${media.id}`
-  //   : `${corsURL}https://vidsrc.xyz/embed/movie?tmdb=${media.id}`
-
-  //   const fetchData = async () => 
-  //   {
-  //     const response = await fetch(urlToCheck);
-  //     setStatusValue(response.status);
-  //   };
-
-  //   fetchData();
-  // }, []);
-  
+    ? `/media/player/show/${media.id}`
+    : `/media/player/movie/${media.id}`;
 
   return (
-    <>
-        <Link legacyBehavior href={linkUrl}>
-          <a className="relative moviecards m-0 p-0 group">
-            <div className="overflow-hidden rounded-md">
-              <img
-                src={imageUrl}
-                alt="Media Image"
-                className="object-cover group-hover:blur-[4px] group-hover:brightness-50 brightness-[0.85] rounded-md duration-300"
-              />
+    <motion.div variants={item}>
+      <Link href={linkUrl}>
+        <motion.div
+          className="relative group card-hover"
+          whileHover={{ scale: 1.05 }}
+        >
+          <div className="aspect-[2/3] rounded-lg overflow-hidden">
+            <img
+              src={imageUrl}
+              alt={media.title || media.name}
+              className="w-full h-full object-cover transition-all duration-300 group-hover:brightness-50"
+            />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                className="w-16 h-16 rounded-full bg-cyan-500/80 flex items-center justify-center"
+              >
+                <FaPlay className="text-white text-2xl" />
+              </motion.div>
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-[50px] h-[50px] bg-yellow-200 rounded-full p-2 absolute right-[20px] bottom-[20px] opacity-[0] group-hover:opacity-[.8] brightness-90 hover:bg-yellow-300 duration-300"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
-              />
-            </svg>
-
-            <div className="absolute top-[10px] mx-4">
-              <p className="text-white text-3xl font-bold group-hover:text-yellow-200">
-                {media.title ? media.title : media.name}
-              </p>
+          </div>
+          <div className="p-4 glass-effect rounded-b-lg">
+            <h3 className="font-semibold text-lg truncate">
+              {media.title || media.name}
+            </h3>
+            <div className="flex items-center mt-2">
+              <FaStar className="text-yellow-400 mr-1" />
+              <span>{media.vote_average?.toFixed(1)}</span>
             </div>
-          </a>
-        </Link>
-    </>
+          </div>
+        </motion.div>
+      </Link>
+    </motion.div>
   );
 };
 

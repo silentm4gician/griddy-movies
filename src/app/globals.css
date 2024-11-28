@@ -2,170 +2,135 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #0f172a;
+  --secondary: #1e293b;
+  --accent: #38bdf8;
+  --text: #f8fafc;
+  --glass: rgba(255, 255, 255, 0.1);
+}
+
 body {
-  background: rgb(25, 25, 26);
+  background: var(--primary);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
 }
 
-@layer components {
-  .moviecards {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 40%;
-  }
-
-  .dropdownmenu {
-    animation: dropdown 2s linear 0s forwards normal;
-    transform-origin: top;
-  }
-
-  .redropdownmenu {
-    animation: dropdown 1s linear 0s forwards reverse;
-    transform-origin: top;
-  }
-
-  .cardgrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-    padding: 15px;
-  }
-
-  .tvgrid {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 60px 1fr;
-    grid-template-areas:
-      "title title"
-      "image desc";
-  }
-
-  .tvtitle {
-    grid-area: title;
-  }
-  .tvimage {
-    grid-area: image;
-  }
-  .tvdesc {
-    grid-area: desc;
-  }
+.glass-effect {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes reveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600;
 }
 
-@keyframes dropdown {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
+.hero-gradient {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(15, 23, 42, 0.8) 50%,
+    rgba(15, 23, 42, 1)
+  );
 }
 
-@layer utilities {
-  .pause {
-    animation-play-state: paused;
-  }
-  .resume {
-    animation-play-state: running;
-  }
+.card-hover {
+  @apply transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20;
 }
 
-.btnFilter:hover
-{
-  background-color: rgba(128, 128, 128, 0.124);
+.swiper {
+  width: 100%;
+  padding: 2rem 0;
 }
 
-.topnav {
-  background-color:rgb(22, 31, 44) ;
-  overflow: hidden;
-  position: fixed;
-  top: 0; 
-  width: 100%; 
-  z-index: 9999;
+.swiper-slide {
+  @apply transition-all duration-300;
 }
 
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+.swiper-slide-active {
+  @apply scale-105;
 }
 
-.topnav .icon {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child){
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .topnav.responsive {float: none;}
-  .topnav.responsive {position: fixed;}
-  .topnav.responsive{
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-}
-
-.search
-{
-  max-width: 120px;
-  text-align: center;
-  float: left;
-  margin-top: 16px;
-  margin-right: 0px;
-}
-
-.icon
-{
-  text-align: center;
-  margin-top: 12px;
-}
-
-/* SCROLLBAR */
-
-/* width */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 6px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
+  background: var(--primary);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(52, 63, 78);
-  border-radius: 10px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Media Queries */
+@screen sm {
+  .cardgrid {
+    @apply grid-cols-2;
+  }
+}
+
+@screen md {
+  .cardgrid {
+    @apply grid-cols-3;
+  }
+}
+
+@screen lg {
+  .cardgrid {
+    @apply grid-cols-4;
+  }
+}
+
+@screen xl {
+  .cardgrid {
+    @apply grid-cols-5;
+  }
+}
+
+/* Loading Animation */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--accent);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility Classes */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(8px);
 }

@@ -1,19 +1,18 @@
-import { getTrendingMovies } from "@/api/requests/requests";
-import Card from "@/components/Card";
+import { getTrendingMovies } from '@/api/requests/requests';
+import HeroSection from '@/components/HeroSection';
+import MovieGrid from '@/components/MovieGrid';
 
 const HomePage = async () => {
-  const { page, results } = await getTrendingMovies();
+  const { results } = await getTrendingMovies();
 
   return (
-    <section className="bg-slate-800">
-      <h2 className="text-white text-2xl italic text-center mb-2">RECENTS</h2>
-      <hr className="mx-[20%] mb-2"/>
-      <div className="cardgrid">
-        {results?.map((media) => (
-          <Card media={media} key={media.id} />
-        ))}
-      </div>
-    </section>
+    <main className='min-h-screen bg-gradient-to-b from-primary to-secondary'>
+      <HeroSection movies={results} />
+      <section className='container mx-auto px-4 py-12'>
+        <h2 className='gradient-text text-3xl font-bold mb-8'>Trending Now</h2>
+        <MovieGrid media={results} />
+      </section>
+    </main>
   );
 };
 

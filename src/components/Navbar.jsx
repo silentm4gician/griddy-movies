@@ -1,77 +1,173 @@
-'use client'
-import Link from "next/link";
-import { useState } from "react";
+'use client';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
-const Navbar = () =>
-{ 
-  const [search,setSearch] = useState('')
+const Navbar = () => {
+  const [search, setSearch] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
-  const collapse =()=>
-  {
-    const x = document.getElementById("myTopnav")
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    if(x.className === "topnav")
-    {
-      x.className += " responsive"
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      router.push(`/media/results/${search}`);
+      setSearch('');
     }
-    else 
-    {
-      x.className = "topnav"
-    }
-  }
+  };
 
   return (
-    <nav className="topnav" id="myTopnav">
-      <Link className="active hover:bg-slate-800 p-1 rounded-md mt-1 ml-1" href="/">
-        <h3 className="text-bold text-2xl ml-1 mt-1">Griddy Movies</h3>
-      </Link>
-        <Link
-          href="/media/trending"
-          className="mt-3 hover:bg-slate-800 p-1 rounded-md menu"
-        >
-          Trending
-        </Link>
-        <Link
-          href="/media/movies"
-          className="my-3 hover:bg-slate-800 p-1 rounded-md menu"
-        >
-          Movies
-        </Link>
-        <Link
-          href="/media/shows"
-          className="my-3 hover:bg-slate-800 p-1 rounded-md menu"
-        >
-          TV Shows
-        </Link>
-        <Link
-          href="/contact"
-          className="my-3 hover:bg-slate-800 p-1 rounded-md menu"
-        >
-          About
-        </Link>
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-slate-900/95 backdrop-blur-sm shadow-lg'
+          : 'bg-gradient-to-b from-slate-900/80 to-transparent'
+      }`}
+    >
+      <div className='max-w-7xl mx-auto px-4'>
+        <div className='flex items-center justify-between h-16'>
+          <Link href='/' className='flex items-center space-x-3'>
+            <motion.h3
+              className='text-2xl font-bold text-white'
+              whileHover={{ scale: 1.05 }}
+            >
+              Griddy Movies
+            </motion.h3>
+          </Link>
 
-        <input
-          required
-          type='text'
-          className="bg-slate-700 text-xl py-2 focus:outline-none rounded-md px-2 mx-4 my-2 text-white search"
-          placeholder="search"
-          onChange={(e)=>setSearch(e.target.value)}
-        ></input>
-        <div className="float-left mt-3">  
-        <Link
-          className="h-[3rem] rounded-full cursor-pointer color-800 shadow hover:shadow-slate-300"
-          href={`/media/results/${search}`}
-          >
-          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Z"/>
-          <path fillRule="evenodd" d="M21.707 21.707a1 1 0 0 1-1.414 0l-3.5-3.5a1 1 0 0 1 1.414-1.414l3.5 3.5a1 1 0 0 1 0 1.414Z" clipRule="evenodd"/>
-          </svg>
-        </Link>
+          <div className='hidden md:flex items-center space-x-8'>
+            <NavLink href='/media/trending'>Trending</NavLink>
+            <NavLink href='/media/movies'>Movies</NavLink>
+            <NavLink href='/media/shows'>TV Shows</NavLink>
+            <NavLink href='/contact'>About</NavLink>
           </div>
 
-      <a  className="icon hover:bg-slate-800 p-3 rounded-md" onClick={collapse}>&#9776;</a>
-    </nav>
+          <div className='flex items-center space-x-4'>
+            <form onSubmit={handleSearch} className='relative'>
+              <input
+                type='text'
+                className='bg-slate-800 text-white px-4 py-2 rounded-full w-48 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all'
+                placeholder='Search...'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <motion.button
+                type='submit'
+                className='absolute right-3 top-1/2 -translate-y-1/2'
+              >
+                <svg
+                  className='w-5 h-5 text-gray-400'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                  />
+                </svg>
+              </motion.button>
+            </form>
+
+            <button
+              className='md:hidden text-white'
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <svg
+                className='w-6 h-6'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M4 6h16M4 12h16M4 18h16'
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className='md:hidden py-4'
+            >
+              <div className='flex flex-col space-y-4'>
+                <MobileNavLink
+                  href='/media/trending'
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Trending
+                </MobileNavLink>
+                <MobileNavLink
+                  href='/media/movies'
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Movies
+                </MobileNavLink>
+                <MobileNavLink
+                  href='/media/shows'
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  TV Shows
+                </MobileNavLink>
+                <MobileNavLink
+                  href='/contact'
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  About
+                </MobileNavLink>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
   );
 };
+
+const NavLink = ({ href, children }) => (
+  <Link href={href}>
+    <motion.span
+      className='text-gray-300 hover:text-white transition-colors cursor-pointer'
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {children}
+    </motion.span>
+  </Link>
+);
+
+const MobileNavLink = ({ href, children, onClick }) => (
+  <Link href={href} onClick={onClick}>
+    <motion.span
+      className='block text-gray-300 hover:text-white transition-colors'
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {children}
+    </motion.span>
+  </Link>
+);
 
 export default Navbar;

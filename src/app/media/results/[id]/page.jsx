@@ -1,26 +1,15 @@
-'use client'
+import { getMovieResults, getTvResults } from "@/api/requests/requests";
+import ResultsClient from "@/components/ResultsClient";
 
-import Results from "@/components/Results"
-import { useEffect, useState } from "react"
+const ResultsPage = async ({ params }) => {
+  const { results: movieResults } = await getMovieResults(params.id);
+  const { results: tvResults } = await getTvResults(params.id);
 
-const ResultsPage = ({params}) =>
-{
-    const [media,setMedia] = useState('movie')
+  return <ResultsClient 
+    params={params} 
+    initialMovieResults={movieResults} 
+    initialTvResults={tvResults} 
+  />;
+};
 
-    useEffect(()=>{console.log(media)},[media])
-
-    return (
-    <section className="bg-slate-800">
-
-        <h3 className="text-xl text-center text-white mb-2">FILTER BY</h3>
-        <div className="flex justify-center">
-            <button onClick={()=>setMedia('movie')} className="shadow p-4 bg-slate-900 text-white mx-2 mb-4 rounded-md btnFilter hover:shadow-slate-300">MOVIES</button>
-            <button onClick={()=>setMedia('tv')} className="shadow p-4 bg-slate-900 text-white mx-2 mb-4 rounded-md btnFilter hover:shadow-slate-300">TV SHOWS</button>
-        </div>
-
-        <Results query={params.id} type={media}/>
-    </section>
-    )
-}
-
-export default ResultsPage
+export default ResultsPage;

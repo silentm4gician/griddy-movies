@@ -1,19 +1,21 @@
 import { getTopRatedMovies } from "@/api/requests/requests";
-import Card from "@/components/Card";
+import MovieGrid from "@/components/MovieGrid";
+import CategoryHeader from "@/components/CategoryHeader";
 
 const MoviesPage = async () => {
-  const { page, results } = await getTopRatedMovies();
+  const { results } = await getTopRatedMovies();
 
   return (
-    <section className="bg-slate-800">
-      <h2 className="text-white text-2xl italic text-center mb-2">MOVIES</h2>
-      <hr className="mx-[20%] mb-2"/>
-      <div className="cardgrid">
-        {results?.map((media) => (
-          <Card media={media} key={media.id} />
-        ))}
-      </div>
-    </section>
+    <main className="min-h-screen bg-gradient-to-b from-primary to-secondary pt-24">
+      <CategoryHeader 
+        title="Movies" 
+        subtitle="Discover the best films of all time"
+        icon="🎬"
+      />
+      <section className="container mx-auto px-4 py-12">
+        <MovieGrid media={results} />
+      </section>
+    </main>
   );
 };
 

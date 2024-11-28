@@ -1,155 +1,77 @@
 import axios from "axios";
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+
+const createApiRequest = (url, params = { language: "en-US" }) => ({
+  method: "GET",
+  url: `https://api.themoviedb.org/3${url}`,
+  params,
+  headers: {
+    accept: "application/json",
+    Authorization: API_KEY,
+  },
+});
+
 export const getTrending = async () => {
-  const options = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/trending/all/day",
-    params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest("/trending/all/day");
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getTrendingMovies = async () => {
-  const options = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/movie/popular",
-    params: { language: "en-US", page: "1" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest("/movie/popular", { language: "en-US", page: "1" });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getTopRatedTvShows = async () => {
-  const options = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/tv/top_rated",
-    params: { language: "en-US", page: "1" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest("/tv/top_rated", { language: "en-US", page: "1" });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getTopRatedMovies = async () => {
-  const options = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/movie/top_rated",
-    params: { language: "en-US", page: "1" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest("/movie/top_rated", { language: "en-US", page: "1" });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getMovieInfo = async (movieId) => {
-  const options = {
-    method: "GET",
-    url: `https://api.themoviedb.org/3/movie/${movieId}`,
-    params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest(`/movie/${movieId}`, { language: "en-US" });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getShowInfo = async (showId) => {
-  const options = {
-    method: "GET",
-    url: `https://api.themoviedb.org/3/tv/${showId}`,
-    params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest(`/tv/${showId}`, { language: "en-US" });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getSeasonInfo = async (showId, showSeason) => {
-  const options = {
-    method: "GET",
-    url: `https://api.themoviedb.org/3/tv/${showId}/season/${showSeason}`,
-    params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest(`/tv/${showId}/season/${showSeason}`, { language: "en-US" });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getMovieResults = async (toSearch) => {
-  const options = {
-    method: "GET",
-    url: 'https://api.themoviedb.org/3/search/movie',
-    params: { query: toSearch, include_adult: 'false', language: 'en-US', page: '1' },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest('/search/movie', { 
+    query: toSearch, 
+    include_adult: 'false', 
+    language: 'en-US', 
+    page: '1' 
+  });
   const res = await axios.request(options);
-
   return res.data;
 };
 
 export const getTvResults = async (toSearch) => {
-  const options = {
-    method: "GET",
-    url: 'https://api.themoviedb.org/3/search/tv',
-    params: { query: toSearch, include_adult: 'false', language: 'en-US', page: '1' },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        process.env.NEXT_PUBLIC_API_KEY,
-    },
-  };
-
+  const options = createApiRequest('/search/tv', { 
+    query: toSearch, 
+    include_adult: 'false', 
+    language: 'en-US', 
+    page: '1' 
+  });
   const res = await axios.request(options);
-
   return res.data;
 };
-

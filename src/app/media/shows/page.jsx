@@ -1,19 +1,21 @@
 import { getTopRatedTvShows } from "@/api/requests/requests";
-import Card from "@/components/Card";
+import MovieGrid from "@/components/MovieGrid";
+import CategoryHeader from "@/components/CategoryHeader";
 
 const ShowsPage = async () => {
-  const { page, results } = await getTopRatedTvShows();
+  const { results } = await getTopRatedTvShows();
 
   return (
-    <section className="bg-slate-800">
-      <h2 className="text-white text-2xl italic text-center mb-2">TV SHOWS</h2>
-      <hr className="mx-[20%] mb-2"/>
-      <div className="cardgrid">
-        {results?.map((media) => (
-          <Card media={media} key={media.id} />
-        ))}
-      </div>
-    </section>
+    <main className="min-h-screen bg-gradient-to-b from-primary to-secondary pt-24">
+      <CategoryHeader 
+        title="TV Shows" 
+        subtitle="Binge-worthy series that you'll love"
+        icon="📺"
+      />
+      <section className="container mx-auto px-4 py-12">
+        <MovieGrid media={results} />
+      </section>
+    </main>
   );
 };
 
