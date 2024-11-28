@@ -40,7 +40,7 @@ const Navbar = () => {
         <div className='flex items-center justify-between h-16'>
           <Link href='/' className='flex items-center space-x-3'>
             <motion.h3
-              className='text-2xl font-bold text-white'
+              className='text-md md:text-2xl font-bold text-white'
               whileHover={{ scale: 1.05 }}
             >
               Griddy Movies

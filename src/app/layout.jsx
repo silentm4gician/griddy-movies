@@ -20,7 +20,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://i.ibb.co/VNjHtYz/griddy-Logo.png",
+        url: "https://i.ibb.co/m4MLgnS/griddy.jpg",
         width: 1200,
         height: 630,
         alt: "Griddy Movies - Watch Free Movies & Series Online",
@@ -32,7 +32,7 @@ export const metadata = {
     title: "Griddy Movies - Watch Free Movies & Series Online",
     description:
       "Discover a vast collection of movies and series to watch online for free with Griddy Movies. Start your binge today!",
-    image: "https://i.ibb.co/VNjHtYz/griddy-Logo.png",
+    image: "https://i.ibb.co/m4MLgnS/griddy.jpg",
     // site: "@GriddyMovies",
   },
   robots: "index, follow",
@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
         className={`${roboto.className} relative min-h-screen flex flex-col bg-slate-800`}
       >
         <Navbar />
-        <main className="flex-grow pt-16">{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

@@ -16,6 +16,28 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* Hero Swiper Styles */
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.hero-swiper .swiper-button-next:hover,
+.hero-swiper .swiper-button-prev:hover {
+  background: rgba(56, 189, 248, 0.3);
+  transform: scale(1.1);
+}
+
+.hero-swiper .swiper-button-next:after,
+.hero-swiper .swiper-button-prev:after {
+  font-size: 1.5rem;
+}
+
 .glass-effect {
   background: var(--glass);
   backdrop-filter: blur(10px);

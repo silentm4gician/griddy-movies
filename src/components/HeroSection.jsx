@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectCoverflow } from "swiper/modules";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import "swiper/css";
-import "swiper/css/effect-coverflow";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
 
 const HeroSection = ({ movies }) => {
   const router = useRouter();
@@ -18,26 +19,20 @@ const HeroSection = ({ movies }) => {
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative h-[80vh] overflow-hidden"
+      className="relative h-[90vh] overflow-hidden"
     >
       <Swiper
-        effect="coverflow"
+        effect="fade"
         grabCursor={true}
+        navigation={true}
         centeredSlides={true}
-        slidesPerView="auto"
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
+        slidesPerView={1}
         autoplay={{
-          delay: 3000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
-        modules={[EffectCoverflow, Autoplay]}
-        className="h-full"
+        modules={[EffectFade, Autoplay, Navigation]}
+        className="h-full hero-swiper"
       >
         {movies?.slice(0, 5).map((movie) => (
           <SwiperSlide
@@ -46,13 +41,15 @@ const HeroSection = ({ movies }) => {
             className="cursor-pointer"
           >
             <div className="relative h-full w-full group">
+              <div className="absolute inset-0 bg-black/50 z-10" />{" "}
+              {/* Dark overlay */}
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 alt={movie.title}
-                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 hero-gradient">
-                <div className="absolute bottom-0 left-0 p-8 w-full">
+              <div className="absolute inset-0 z-20">
+                <div className="absolute bottom-0 left-0 p-8 w-full max-w-4xl">
                   <motion.h1
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -64,7 +61,7 @@ const HeroSection = ({ movies }) => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-lg md:text-xl text-gray-200 max-w-2xl"
+                    className="text-lg md:text-xl text-gray-200 line-clamp-3"
                   >
                     {movie.overview}
                   </motion.p>
