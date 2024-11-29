@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const SeasonCard = ({ season, isSelected, onClick }) => (
@@ -29,8 +29,19 @@ const SeasonCard = ({ season, isSelected, onClick }) => (
 
 const SeasonSelector = ({ seasons, selectedSeason, onSeasonChange }) => {
   const scrollContainerRef = useRef(null);
-  const [showLeftArrow, setShowLeftArrow] = React.useState(false);
-  const [showRightArrow, setShowRightArrow] = React.useState(true);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const checkScrollButtons = () => {
     if (scrollContainerRef.current) {
@@ -41,7 +52,7 @@ const SeasonSelector = ({ seasons, selectedSeason, onSeasonChange }) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     checkScrollButtons();
     const container = scrollContainerRef.current;
     if (container) {
@@ -68,7 +79,7 @@ const SeasonSelector = ({ seasons, selectedSeason, onSeasonChange }) => {
     <div className='glass-effect rounded-xl p-6'>
       <h3 className='text-xl font-semibold mb-6'>Seasons</h3>
       <div className='relative group'>
-        {showLeftArrow && (
+        {!isMobile && showLeftArrow && (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -81,7 +92,7 @@ const SeasonSelector = ({ seasons, selectedSeason, onSeasonChange }) => {
         )}
         <div
           ref={scrollContainerRef}
-          className='overflow-x-auto scrollbar-hide scroll-smooth'
+          className='overflow-x-auto scrollbar-hide scroll-smooth md:overflow-x-hidden'
         >
           <div className='flex space-x-3 p-2 w-max'>
             {filteredSeasons.map((season) => (
@@ -94,7 +105,7 @@ const SeasonSelector = ({ seasons, selectedSeason, onSeasonChange }) => {
             ))}
           </div>
         </div>
-        {showRightArrow && (
+        {!isMobile && showRightArrow && (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

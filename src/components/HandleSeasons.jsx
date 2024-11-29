@@ -24,7 +24,7 @@ const HandleSeasons = ({ show }) => {
     getSeasonInfo(show.id, 1).then((res) => {
       setDisplayedSeason(res);
     });
-  }, []);
+  }, [show.id]);
 
   const handleSeasonChange = async (seasonNumber) => {
     setSelectedSeason(seasonNumber);
@@ -55,7 +55,7 @@ const HandleSeasons = ({ show }) => {
   const currentEpisodeInfo = displayedSeason?.episodes[currentEpisode - 1];
 
   return (
-    <div className='space-y-6 max-w-5xl mx-auto'>
+    <div className='space-y-6 max-w-full mx-auto'>
       <SeasonSelector
         seasons={seasons}
         selectedSeason={selectedSeason}
@@ -82,11 +82,12 @@ const HandleSeasons = ({ show }) => {
           >
             {showEpisodeList ? (
               <>
-                <FaTimes /> Hide Full Episode List
+                <FaTimes /> Hide Episode List
               </>
             ) : (
               <>
-                <FaList /> View All Episodes
+                <FaList /> View All Episodes ({displayedSeason?.episodes.length}
+                )
               </>
             )}
           </button>

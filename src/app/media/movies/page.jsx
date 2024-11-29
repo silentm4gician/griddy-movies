@@ -8,6 +8,18 @@ import CategoryHeader from '@/components/CategoryHeader';
 import GenreFilter from '@/components/GenreFilter';
 import Pagination from '@/components/Pagination';
 
+export const metadata = {
+  title: 'Watch Movies Online Free - Griddy Movies',
+  description:
+    'Stream the best movies online for free. Find action, comedy, drama, horror, and more. No subscription required.',
+  openGraph: {
+    title: 'Watch Movies Online Free - Griddy Movies',
+    description:
+      'Stream thousands of movies online for free. New titles added regularly.',
+    images: [{ url: 'https://i.ibb.co/m4MLgnS/griddy.jpg' }],
+  },
+};
+
 const MoviesPage = async ({ searchParams }) => {
   const page = parseInt(searchParams.page) || 1;
   const genreId = searchParams.genre;

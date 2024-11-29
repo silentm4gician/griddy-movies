@@ -7,6 +7,18 @@ import MovieGrid from '@/components/MovieGrid';
 import CategoryHeader from '@/components/CategoryHeader';
 import GenreFilter from '@/components/GenreFilter';
 
+export const metadata = {
+  title: 'Watch TV Shows Online Free - Griddy Movies',
+  description:
+    'Stream your favorite TV shows online for free. Binge-watch series from various genres with no subscription needed.',
+  openGraph: {
+    title: 'Watch TV Shows Online Free - Griddy Movies',
+    description:
+      'Stream popular TV series online for free. New episodes added regularly.',
+    images: [{ url: 'https://i.ibb.co/m4MLgnS/griddy.jpg' }],
+  },
+};
+
 const ShowsPage = async ({ searchParams }) => {
   const genreId = searchParams.genre;
   const [{ results }, { genres }] = await Promise.all([
