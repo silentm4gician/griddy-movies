@@ -1,18 +1,31 @@
-import { getTopRatedTvShows } from "@/api/requests/requests";
-import MovieGrid from "@/components/MovieGrid";
-import CategoryHeader from "@/components/CategoryHeader";
+import {
+  getTopRatedTvShows,
+  getTvGenres,
+  getTvShowsByGenre,
+} from '@/api/requests/requests';
+import MovieGrid from '@/components/MovieGrid';
+import CategoryHeader from '@/components/CategoryHeader';
+import GenreFilter from '@/components/GenreFilter';
 
-const ShowsPage = async () => {
-  const { results } = await getTopRatedTvShows();
+const ShowsPage = async ({ searchParams }) => {
+  const genreId = searchParams.genre;
+  const [{ results }, { genres }] = await Promise.all([
+    genreId ? getTvShowsByGenre(genreId) : getTopRatedTvShows(),
+    getTvGenres(),
+  ]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-primary to-secondary pt-24">
-      <CategoryHeader 
-        title="TV Shows" 
+    <main className='min-h-screen bg-gradient-to-b from-primary to-secondary pt-24'>
+      <CategoryHeader
+        title='TV Shows'
         subtitle="Binge-worthy series that you'll love"
-        icon="📺"
+        icon='📺'
       />
-      <section className="container mx-auto px-4 py-12">
+      <section className='container mx-auto px-4 py-12'>
+        <GenreFilter
+          genres={genres}
+          selectedGenre={genreId ? parseInt(genreId) : null}
+        />
         <MovieGrid media={results} />
       </section>
     </main>

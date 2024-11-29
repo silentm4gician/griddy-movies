@@ -10,13 +10,61 @@
   --glass: rgba(255, 255, 255, 0.1);
 }
 
+/* Base Styles */
 body {
   background: var(--primary);
   color: var(--text);
   font-family: 'Inter', sans-serif;
 }
 
-/* Hero Swiper Styles */
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-effect:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Styles */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Section */
+.hero-gradient {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(15, 23, 42, 0.8) 50%,
+    rgba(15, 23, 42, 1)
+  );
+}
+
+/* Card Hover Effects */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.1);
+}
+
+/* Swiper Styles */
 .hero-swiper .swiper-button-next,
 .hero-swiper .swiper-button-prev {
   color: white;
@@ -36,29 +84,6 @@ body {
 .hero-swiper .swiper-button-next:after,
 .hero-swiper .swiper-button-prev:after {
   font-size: 1.5rem;
-}
-
-.glass-effect {
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600;
-}
-
-.hero-gradient {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(15, 23, 42, 0.8) 50%,
-    rgba(15, 23, 42, 1)
-  );
-}
-
-.card-hover {
-  @apply transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20;
 }
 
 .swiper {
@@ -90,7 +115,8 @@ body {
 
 /* Animations */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -98,11 +124,46 @@ body {
   }
 }
 
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Media Queries */
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Loading Animation */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--accent);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Grid */
 @screen sm {
   .cardgrid {
     @apply grid-cols-2;
@@ -127,32 +188,34 @@ body {
   }
 }
 
-/* Loading Animation */
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid var(--accent);
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+/* Transitions */
+.page-transition {
+  @apply transition-all duration-300 ease-in-out;
 }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.hover-transition {
+  @apply transition-all duration-200 ease-in-out;
 }
 
-/* Utility Classes */
-.text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+/* Container */
+.container {
+  @apply max-w-7xl mx-auto px-4;
 }
 
-.backdrop-blur {
-  backdrop-filter: blur(8px);
+/* Button Styles */
+.btn {
+  @apply px-4 py-2 rounded-full transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-cyan-500 text-white hover:bg-cyan-600;
+}
+
+.btn-secondary {
+  @apply bg-slate-800 text-gray-300 hover:bg-slate-700;
+}
+
+/* Footer Spacing Fix */
+.footer-spacing {
+  @apply mt-20 bg-slate-900/95 backdrop-blur-sm;
 }
