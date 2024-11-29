@@ -11,9 +11,12 @@ web application to watch series and films for free, builded with the [TMDB API](
 - FREE
 
 ## Screenshots
+### Main Page
+![mainPage](https://github.com/user-attachments/assets/866bb990-a786-4403-ae76-2ddefed7f3f7)
 
-![mainScreen](https://github.com/user-attachments/assets/d4799d82-c507-47d7-b07b-187d3e03df0d)
-![image](https://github.com/user-attachments/assets/a52b27f2-2b9b-41f5-9d3e-c6553601e163)
+### Watch Page
+![watchPage](https://github.com/user-attachments/assets/4e54bd90-65d0-4d69-9250-609acb3523ee)
+
 
 
 ## Roadmap
