@@ -1,43 +1,108 @@
-import { getTrendingMovies, getTopRatedTvShows } from '@/api/requests/requests';
+import {
+  getTrendingMovies,
+  getTopRatedTvShows,
+  getMovieGenres,
+  getTvGenres,
+} from '@/api/requests/requests';
 
 export default async function sitemap() {
   const baseUrl = 'https://griddy-movies.site';
+  const currentDate = new Date().toISOString();
 
-  // Get dynamic movie and show data
-  const [{ results: movies }, { results: shows }] = await Promise.all([
+  // Get dynamic data
+  const [
+    { results: movies },
+    { results: shows },
+    { genres: movieGenres },
+    { genres: tvGenres },
+  ] = await Promise.all([
     getTrendingMovies(),
     getTopRatedTvShows(),
+    getMovieGenres(),
+    getTvGenres(),
   ]);
 
-  // Static routes
+  // Core routes
   const routes = [
-    '',
-    '/media/trending',
-    '/media/movies',
-    '/media/shows',
-    '/contact',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'daily',
-    priority: 1.0,
+    {
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/media/trending`,
+      lastModified: currentDate,
+      changeFrequency: 'hourly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/media/movies`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/media/shows`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+  ];
+
+  // Genre pages
+  const movieGenreUrls = movieGenres.map((genre) => ({
+    url: `${baseUrl}/media/movies?genre=${genre.id}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.7,
   }));
 
-  // Dynamic movie routes
+  const tvGenreUrls = tvGenres.map((genre) => ({
+    url: `${baseUrl}/media/shows?genre=${genre.id}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
+  // Movie and show pages
   const movieUrls = movies.map((movie) => ({
     url: `${baseUrl}/media/player/movie/${movie.id}`,
-    lastModified: new Date().toISOString(),
+    lastModified: currentDate,
     changeFrequency: 'weekly',
-    priority: 0.8,
+    priority: 0.6,
+    images: [
+      {
+        url: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+        title: movie.title,
+      },
+    ],
   }));
 
-  // Dynamic show routes
   const showUrls = shows.map((show) => ({
     url: `${baseUrl}/media/player/show/${show.id}`,
-    lastModified: new Date().toISOString(),
+    lastModified: currentDate,
     changeFrequency: 'weekly',
-    priority: 0.8,
+    priority: 0.6,
+    images: [
+      {
+        url: `https://image.tmdb.org/t/p/original${show.backdrop_path}`,
+        title: show.name,
+      },
+    ],
   }));
 
-  return [...routes, ...movieUrls, ...showUrls];
+  return [
+    ...routes,
+    ...movieGenreUrls,
+    ...tvGenreUrls,
+    ...movieUrls,
+    ...showUrls,
+  ];
 }

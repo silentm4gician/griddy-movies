@@ -1,73 +1,101 @@
-import { Roboto } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer/Footer";
+import { Roboto } from 'next/font/google';
+import './globals.css';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer/Footer';
+import Script from 'next/script';
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["300"] });
+const roboto = Roboto({ subsets: ['latin'], weight: ['300'] });
 
 export const metadata = {
-  title: "Griddy Movies - Watch Free Movies & Series Online",
+  metadataBase: new URL('https://griddy-movies.site'),
+  title: {
+    default: 'Griddy Movies - Watch Free Movies & TV Shows Online',
+    template: '%s | Griddy Movies',
+  },
   description:
-    "Griddy Movies offers a vast collection of movies and series to stream for free. Discover your next favorite show or movie today!",
+    'Stream thousands of movies and TV shows for free on Griddy Movies. No subscription required. Watch the latest releases and classic favorites instantly.',
   keywords:
-    "free movies, free series, online streaming, watch movies, watch series, streaming platform, Griddy Movies",
-  author: "V4 Code",
+    'free movies online, watch movies free, streaming movies, free TV shows, watch series online, HD movies, Griddy Movies, online streaming',
+  authors: [{ name: 'V4 Code' }],
+  creator: 'V4 Code',
+  publisher: 'Griddy Movies',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: 'https://griddy-movies.site',
+  },
   openGraph: {
-    title: "Griddy Movies - Watch Free Movies & Series Online",
+    title: 'Griddy Movies - Free Movie & TV Show Streaming',
     description:
-      "Stream a wide range of movies and series for free on Griddy Movies. No subscription required. Start watching now!",
-    url: "https://griddy-movies.site",
-    type: "website",
+      'Your ultimate destination for free movie and TV show streaming. Watch in HD quality with no subscription needed.',
+    url: 'https://griddy-movies.site',
+    siteName: 'Griddy Movies',
+    locale: 'en_US',
+    type: 'website',
     images: [
       {
-        url: "https://i.ibb.co/m4MLgnS/griddy.jpg",
+        url: 'https://i.ibb.co/m4MLgnS/griddy.jpg',
         width: 1200,
         height: 630,
-        alt: "Griddy Movies - Watch Free Movies & Series Online",
+        alt: 'Griddy Movies - Free Streaming Platform',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Griddy Movies - Watch Free Movies & Series Online",
+    card: 'summary_large_image',
+    title: 'Griddy Movies - Free Movie & TV Show Streaming',
     description:
-      "Discover a vast collection of movies and series to watch online for free with Griddy Movies. Start your binge today!",
-    image: "https://i.ibb.co/m4MLgnS/griddy.jpg",
-    // site: "@GriddyMovies",
+      'Stream movies and TV shows for free in HD. No subscription, no hassle.',
+    images: ['https://i.ibb.co/m4MLgnS/griddy.jpg'],
+    creator: '@GriddyMovies',
+    site: '@GriddyMovies',
   },
-  robots: "index, follow",
+  verification: {
+    google: 'your-google-verification-code', // Add your Google Search Console verification code
+  },
+  category: 'entertainment',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang='en' className='scroll-smooth'>
       <head>
-        <link rel="icon" href="griddyLogo.png" />
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="author" content={metadata.author} />
-        <meta property="og:title" content={metadata.openGraph.title} />
+        <link rel='icon' href='/griddyLogo.png' />
+        <link rel='canonical' href='https://griddy-movies.site' />
         <meta
-          property="og:description"
-          content={metadata.openGraph.description}
+          name='viewport'
+          content='width=device-width, initial-scale=1, maximum-scale=5'
         />
-        <meta property="og:type" content={metadata.openGraph.type} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:image" content={metadata.openGraph.images[0].url} />
-        <meta name="twitter:card" content={metadata.twitter.card} />
-        <meta name="twitter:title" content={metadata.twitter.title} />
-        <meta
-          name="twitter:description"
-          content={metadata.twitter.description}
-        />
-        <meta name="twitter:image" content={metadata.twitter.image} />
-        <meta name="robots" content={metadata.robots} />
+        <meta name='theme-color' content='#0f172a' />
+        <meta name='msapplication-TileColor' content='#0f172a' />
+        <meta name='application-name' content='Griddy Movies' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-status-bar-style' content='black' />
+        <meta name='apple-mobile-web-app-title' content='Griddy Movies' />
+        <meta name='format-detection' content='telephone=no' />
+        <meta name='mobile-web-app-capable' content='yes' />
+        <link rel='manifest' href='/manifest.json' />
       </head>
       <body
         className={`${roboto.className} relative min-h-screen flex flex-col bg-slate-800`}
       >
+        <Script
+          strategy='afterInteractive'
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+        <Script id='google-analytics' strategy='afterInteractive'>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+          `}
+        </Script>
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className='flex-grow'>{children}</main>
         <Footer />
       </body>
     </html>

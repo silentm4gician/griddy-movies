@@ -1,0 +1,22 @@
+{
+  "name": "Griddy Movies",
+  "short_name": "Griddy",
+  "description": "Watch free movies and TV shows online",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/griddyLogo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/griddyLogo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
