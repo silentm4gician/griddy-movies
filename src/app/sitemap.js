@@ -1,3 +1,4 @@
+// app/sitemap.ts
 import {
   getTrendingMovies,
   getTopRatedTvShows,
@@ -6,10 +7,10 @@ import {
 } from '@/api/requests/requests';
 
 export default async function sitemap() {
-  const baseUrl = 'https://griddy-movies.site';
+  const baseUrl = 'https://www.griddy-movies.site';
   const currentDate = new Date().toISOString();
 
-  // Get dynamic data
+  // Obtener datos dinámicos
   const [
     { results: movies },
     { results: shows },
@@ -22,7 +23,7 @@ export default async function sitemap() {
     getTvGenres(),
   ]);
 
-  // Core routes
+  // Rutas principales
   const routes = [
     {
       url: baseUrl,
@@ -33,7 +34,7 @@ export default async function sitemap() {
     {
       url: `${baseUrl}/media/trending`,
       lastModified: currentDate,
-      changeFrequency: 'hourly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
@@ -56,7 +57,7 @@ export default async function sitemap() {
     },
   ];
 
-  // Genre pages
+  // Páginas de géneros
   const movieGenreUrls = movieGenres.map((genre) => ({
     url: `${baseUrl}/media/movies?genre=${genre.id}`,
     lastModified: currentDate,
@@ -71,38 +72,27 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // Movie and show pages
-  const movieUrls = movies.map((movie) => ({
+  // Películas destacadas (limitar a 500)
+  const featuredMovieUrls = movies.slice(0, 500).map((movie) => ({
     url: `${baseUrl}/media/player/movie/${movie.id}`,
     lastModified: currentDate,
     changeFrequency: 'weekly',
     priority: 0.6,
-    images: [
-      {
-        url: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-        title: movie.title,
-      },
-    ],
   }));
 
-  const showUrls = shows.map((show) => ({
+  // Series destacadas (limitar a 500)
+  const featuredShowUrls = shows.slice(0, 500).map((show) => ({
     url: `${baseUrl}/media/player/show/${show.id}`,
     lastModified: currentDate,
     changeFrequency: 'weekly',
     priority: 0.6,
-    images: [
-      {
-        url: `https://image.tmdb.org/t/p/original${show.backdrop_path}`,
-        title: show.name,
-      },
-    ],
   }));
 
   return [
     ...routes,
     ...movieGenreUrls,
     ...tvGenreUrls,
-    ...movieUrls,
-    ...showUrls,
+    ...featuredMovieUrls,
+    ...featuredShowUrls,
   ];
 }

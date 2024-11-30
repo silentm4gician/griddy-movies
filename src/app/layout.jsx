@@ -7,7 +7,7 @@ import Script from 'next/script';
 const roboto = Roboto({ subsets: ['latin'], weight: ['300'] });
 
 export const metadata = {
-  metadataBase: new URL('https://griddy-movies.site'),
+  metadataBase: new URL('https://www.griddy-movies.site'),
   title: {
     default: 'Griddy Movies - Watch Free Movies & TV Shows Online',
     template: '%s | Griddy Movies',
@@ -25,13 +25,13 @@ export const metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: 'https://griddy-movies.site',
+    canonical: 'https://www.griddy-movies.site',
   },
   openGraph: {
     title: 'Griddy Movies - Free Movie & TV Show Streaming',
     description:
       'Your ultimate destination for free movie and TV show streaming. Watch in HD quality with no subscription needed.',
-    url: 'https://griddy-movies.site',
+    url: 'https://www.griddy-movies.site',
     siteName: 'Griddy Movies',
     locale: 'en_US',
     type: 'website',
@@ -61,7 +61,11 @@ export default function RootLayout({ children }) {
     <html lang='en' className='scroll-smooth'>
       <head>
         <link rel='icon' href='/favIcon.png' />
-        <link rel='canonical' href='https://griddy-movies.site' />
+        <link
+          rel='canonical'
+          href='https://www.griddy-movies.site'
+          key='canonical'
+        />
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1, maximum-scale=5'

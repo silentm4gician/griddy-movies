@@ -3,10 +3,15 @@ export default function robots() {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
+        allow: ['/', '/media/movies', '/media/shows', '/media/trending'],
+        disallow: [
+          '/api/',
+          '/_next/',
+          '/media/player/movie/*?unauthorized',
+          '/media/player/show/*?unauthorized',
+        ],
       },
     ],
-    sitemap: 'https://griddy-movies.site/sitemap.xml',
+    sitemap: 'https://www.griddy-movies.site/sitemap.xml',
   };
 }
