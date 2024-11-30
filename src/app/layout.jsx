@@ -37,9 +37,9 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://i.ibb.co/m4MLgnS/griddy.jpg',
-        width: 1200,
-        height: 630,
+        url: '/favIcon.png',
+        width: 227,
+        height: 227,
         alt: 'Griddy Movies - Free Streaming Platform',
       },
     ],
@@ -49,12 +49,9 @@ export const metadata = {
     title: 'Griddy Movies - Free Movie & TV Show Streaming',
     description:
       'Stream movies and TV shows for free in HD. No subscription, no hassle.',
-    images: ['https://i.ibb.co/m4MLgnS/griddy.jpg'],
+    images: ['/favIcon.png'],
     creator: '@GriddyMovies',
     site: '@GriddyMovies',
-  },
-  verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification code
   },
   category: 'entertainment',
 };
@@ -63,7 +60,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en' className='scroll-smooth'>
       <head>
-        <link rel='icon' href='/griddyLogo.png' />
+        <link rel='icon' href='/favIcon.png' />
         <link rel='canonical' href='https://griddy-movies.site' />
         <meta
           name='viewport'
