@@ -5,6 +5,6 @@ export const metadata = {
   openGraph: {
     title: 'Contact Us - Griddy Movies',
     description: 'Contact the Griddy Movies team for support or inquiries.',
-    images: [{ url: 'https://i.ibb.co/m4MLgnS/griddy.jpg' }],
+    images: [{ url: '/favIcon.png' }],
   },
 };

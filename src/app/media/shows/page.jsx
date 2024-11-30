@@ -15,7 +15,7 @@ export const metadata = {
     title: 'Watch TV Shows Online Free - Griddy Movies',
     description:
       'Stream popular TV series online for free. New episodes added regularly.',
-    images: [{ url: 'https://i.ibb.co/m4MLgnS/griddy.jpg' }],
+    images: [{ url: '/favIcon.png' }],
   },
 };
 

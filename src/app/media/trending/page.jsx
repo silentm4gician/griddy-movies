@@ -10,7 +10,7 @@ export const metadata = {
     title: 'Trending Movies & Shows - Griddy Movies',
     description:
       'Watch the hottest movies and TV shows trending right now. Stream for free on Griddy Movies.',
-    images: [{ url: 'https://i.ibb.co/m4MLgnS/griddy.jpg' }],
+    images: [{ url: '/favIcon.png' }],
   },
 };
 

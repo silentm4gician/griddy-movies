@@ -16,7 +16,7 @@ export const metadata = {
     title: 'Watch Movies Online Free - Griddy Movies',
     description:
       'Stream thousands of movies online for free. New titles added regularly.',
-    images: [{ url: 'https://i.ibb.co/m4MLgnS/griddy.jpg' }],
+    images: [{ url: '/favIcon.png' }],
   },
 };
 
