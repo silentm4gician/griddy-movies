@@ -1,0 +1,42 @@
+/* Custom styles for Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px !important;
+  height: 40px !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: white !important;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+/* Show navigation buttons on hover */
+.cast-carousel:hover .swiper-button-next,
+.cast-carousel:hover .swiper-button-prev,
+.movie-carousel:hover .swiper-button-next,
+.movie-carousel:hover .swiper-button-prev {
+  opacity: 1;
+}
+
+/* Disabled state */
+.swiper-button-disabled {
+  opacity: 0 !important;
+  cursor: default;
+}
+
+/* Free mode momentum scrolling */
+.swiper-free-mode > .swiper-wrapper {
+  transition-timing-function: ease-out;
+  margin: 0 auto;
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { getSeasonInfo } from '@/api/requests/requests';
+import { getSeasonInfoClient as getSeasonInfo } from '@/api/requests/requests';
 import { useEffect, useState, useRef } from 'react';
 import MediaPlayer from './MediaPlayer';
 import SeasonSelector from './SeasonSelector';
@@ -55,7 +55,7 @@ const HandleSeasons = ({ show }) => {
   const currentEpisodeInfo = displayedSeason?.episodes[currentEpisode - 1];
 
   return (
-    <div className='space-y-6 max-w-full mx-auto'>
+    <div className='space-y-6 max-w-xs mx-auto container px-4 pb-8 w-[90vw] sm:w-[600px] md:w-[45vw] lg:w-[55vw]'>
       <SeasonSelector
         seasons={seasons}
         selectedSeason={selectedSeason}

@@ -29,8 +29,9 @@ const Footer = () => {
             />
             <p className="text-gray-400 text-sm">
               Your ultimate destination for streaming movies and TV shows. Enjoy
-              unlimited entertainment with our vast collection of content.
+              unlimited entertainment with a vast collection of content.
             </p>
+            <p className="text-gray-400 text-sm">None of the streaming services are owned by us</p>
             <SocialLinks />
           </motion.div>
 
