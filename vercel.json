@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/rate-limited.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/rate-limited",
+      "dest": "/api/rate-limited.js"
+    }
+  ]
+}
