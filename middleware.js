@@ -1,5 +1,3 @@
-// middleware.js
-
 import { NextResponse } from "next/server";
 
 // Rate limiter for blocking IPs making more than 4 requests per second
