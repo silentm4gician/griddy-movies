@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
-    "axios": "^1.6.2",
+    "axios": "^1.8.2",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
